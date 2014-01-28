@@ -1,6 +1,8 @@
 package registrar;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable{
 	
 	private String name;
 	private int regCode;
@@ -61,5 +63,15 @@ public class Course {
 		
 		System.out.println("Student not found, returning Dummie Student");
 		return new Student("DUMMIE", 0);
+	}
+	
+	public String toString(){
+		return "-------------------------------------\n"+
+				"This is a brief Course Description:\n"+
+				"Course: "+name+"\n"+
+				"Instructor: "+instructor.getName()+"\n"+
+				"Number of Students: "+numStudents+"\n"+
+				"Registration Number: "+regCode+"\n"+
+				"-------------------------------------\n";
 	}
 }

@@ -1,5 +1,6 @@
 package registrar;
 
+import java.io.*;
 public class Registrar {
 
 	public static void main(String[] args) {
@@ -109,8 +110,9 @@ public class Registrar {
 ---------------------------Begin Course Testing Section-----------------------------*/
 		
 		//Set and Retrieve instructor's name
-		c1.setInstructor(new Instructor("Bismarck, The Blood and Iron Chancellor"));
-		if(c1.getInstructor().equals("Bismarck, The Blood and Iron Chancellor"))
+		Instructor ins1 = new Instructor("Bismarck, The Blood and Iron Chancellor");
+		c1.setInstructor(ins1);
+		if(c1.getInstructor().equals(ins1))
 			System.out.println("The set and get instructor Method test passed");
 		else
 			System.out.println("The set and get instructor method needs work");
@@ -155,7 +157,44 @@ public class Registrar {
 		}else{
 			System.out.println("The find student method doesn't work.");
 		}
-	
+		
+		
+	//-------------- Testing Serialization of a Course------------------------	
+		try{
+			
+			FileOutputStream fileOut = new FileOutputStream("course.ser");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(c1);
+			out.close();
+			fileOut.close();
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+		//At this point, the object should be serialized and stored
+		//So we will try to read in the object to a different variable
+		Course serialTest = null;
+		
+		try{			
+			FileInputStream fileIn = new FileInputStream("course.ser");
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			serialTest = (Course)in.readObject();
+			in.close();
+			fileIn.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}catch(ClassNotFoundException f){
+			f.printStackTrace();
+		}
+		
+		//Hopefully this worked and now, the Course reference variable
+		//"serialTest" is the same as c1's object.  I will do a toString
+		serialTest.toString();
 	}
+	
+	
+	
+	
 
 }

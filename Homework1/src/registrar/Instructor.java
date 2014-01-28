@@ -34,6 +34,41 @@ public class Instructor {
 		return department;
 	}
 	
+	//Method to get Name
+	public String getName(){
+		return name;
+	}
+	
+	//Method to get ID number
+	public int getId(){
+		return idNum;
+	}
+	
+	//Method for equals
+	@Override
+	public boolean equals(Object compTo){
+		if(compTo == null || !(compTo instanceof Instructor)){
+			return false;
+		}
+		if(this == compTo){
+			return true;
+		}
+		//Setting another variable so that I do not
+		//have to continue to cast it.
+		Instructor other = (Instructor)compTo;
+		
+		//comparing all of the private variables
+		if(other.getName().equals(this.name)
+			&& other.getId() == this.idNum
+			&& other.getDept() == this.department){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
+	
 	
 
 }
