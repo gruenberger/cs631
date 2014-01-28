@@ -191,6 +191,14 @@ public class Registrar {
 		//Hopefully this worked and now, the Course reference variable
 		//"serialTest" is the same as c1's object.  I will do a toString
 		serialTest.toString();
+		
+		//Tests the Remove Student method
+		try{
+			c2.remove(s1);
+		}catch(CourseException e){
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

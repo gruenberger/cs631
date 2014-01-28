@@ -65,10 +65,5 @@ public class Instructor {
 		}else{
 			return false;
 		}
-		
 	}
-	
-	
-	
-
 }
