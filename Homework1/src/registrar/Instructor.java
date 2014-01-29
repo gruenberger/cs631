@@ -1,7 +1,10 @@
 package registrar;
 
-public class Instructor {
+import java.io.Serializable;
+
+public class Instructor implements Serializable{	
 	
+	private static final long serialVersionUID = 5675583327510849284L;
 	private String name;
 	private int idNum;
 	private String department;

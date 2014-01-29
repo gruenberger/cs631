@@ -1,15 +1,18 @@
 package registrar;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class Course implements Serializable{
 
+	
+	private static final long serialVersionUID = 5697245587474179840L;
 	private String name;
 	private int regCode;
 	private final int MAX_STUDENTS = 35;
 	private Instructor instructor;
 	private int numStudents;
 	private Student[] students;
+	
 
 	public Course(String inName, int code){
 		this.name = inName;
@@ -77,8 +80,7 @@ public class Course implements Serializable{
 	//Remove a Student from the Course
 	//Make sure student exists, then modify the Student array
 	public void remove(Student removeMe) throws CourseException{
-		if(findStudent(removeMe)){
-			Student temp;
+		if(findStudent(removeMe)){			
 			int ind=getIndex(removeMe);
 			int count=0;
 			Student[] newList = new Student[35];
@@ -118,5 +120,40 @@ public class Course implements Serializable{
 			System.out.println(students[i].toString());
 			i++;
 		}
+	}
+	
+	
+	public void makeStudentFile() throws IOException{
+		FileWriter outStream = new FileWriter("Students.dat");
+		PrintWriter output = new PrintWriter(outStream);
+		int index = 0;
+		
+		while(students[index] != null){
+			output.println(students[index].toCSV());
+			index++;
+		}		
+		
+		output.close();
+		outStream.close();		
+	}
+	
+	//Method to read in the CSV file we created in the previous method
+	public void readStudentFile(String fileName) throws IOException, 
+		FileNotFoundException, CourseException {
+		
+		BufferedReader reader = new BufferedReader(new FileReader(fileName));
+		String delimiter = ",";
+		String buffer = "";
+		int id, creds, gpts;
+		
+		while((buffer = reader.readLine()) != null){
+			String[] splitLine = buffer.split(delimiter);
+			id = Integer.parseInt(splitLine[1]);
+			creds = Integer.parseInt(splitLine[2]);
+			gpts = Integer.parseInt(splitLine[3]);
+			
+			this.addStudent(new Student(splitLine[0],id,creds,gpts));
+		}
+		
 	}
 }

@@ -1,7 +1,11 @@
 package registrar;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable{
 	
+	
+	private static final long serialVersionUID = 8031944245066345758L;
 	private String name;
 	private int id;
 	private int credits;
@@ -12,6 +16,13 @@ public class Student {
 		this.id = inId;
 		this.credits = 0; //Set to "default values"
 		this.gpts = 0; //Set to "default values"
+	}
+	
+	public Student(String inName, int inId, int creds, int grpts){
+		this.name = inName;
+		this.id = inId;
+		this.credits = creds;
+		this.gpts = grpts;
 	}
 	
 	public String getName(){

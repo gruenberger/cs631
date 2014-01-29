@@ -158,15 +158,17 @@ public class Registrar {
 			System.out.println("The find student method doesn't work.");
 		}
 		
+		c2.setInstructor(ins1);
+		System.out.println(c2.toString());
 		
 	//-------------- Testing Serialization of a Course------------------------	
 		try{
 			
-			FileOutputStream fileOut = new FileOutputStream("course.ser");
-			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(c1);
-			out.close();
-			fileOut.close();
+			ObjectOutputStream ooStream = new ObjectOutputStream(
+					new FileOutputStream("Course.dat"));
+			
+			ooStream.writeObject(c2);
+			ooStream.close();			
 			
 		}catch(IOException e){
 			e.printStackTrace();
@@ -177,11 +179,10 @@ public class Registrar {
 		Course serialTest = null;
 		
 		try{			
-			FileInputStream fileIn = new FileInputStream("course.ser");
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-			serialTest = (Course)in.readObject();
-			in.close();
-			fileIn.close();
+			ObjectInputStream ioStream = new ObjectInputStream(
+					new FileInputStream("Course.dat"));
+			serialTest = (Course)ioStream.readObject();
+			ioStream.close();
 		}catch(IOException e){
 			e.printStackTrace();
 		}catch(ClassNotFoundException f){
@@ -190,7 +191,7 @@ public class Registrar {
 		
 		//Hopefully this worked and now, the Course reference variable
 		//"serialTest" is the same as c1's object.  I will do a toString
-		serialTest.toString();
+		System.out.println(serialTest.toString());
 		
 		//Tests the Remove Student method
 		try{
@@ -199,10 +200,23 @@ public class Registrar {
 			e.printStackTrace();
 		}
 		
+		//Testing the creation of the student list to a CSV
+		//formatted file, with a \n after each student entry
+		try{
+			c2.makeStudentFile();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+		//Testing the read CSV file
+		Course testFileRead = new Course("Economics", 345);
+		try {
+			testFileRead.readStudentFile("Students.dat");
+		} catch (IOException | CourseException e) {
+			// 
+			e.printStackTrace();
+		}
+		
+		testFileRead.printStudents();
 	}
-	
-	
-	
-	
-
 }
