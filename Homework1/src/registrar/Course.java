@@ -157,7 +157,7 @@ public class Course implements Serializable{
 		
 	}
 	
-	private void writeObject() throws FileNotFoundException, IOException{
+	public void writeObject() throws FileNotFoundException, IOException{
 		ObjectOutputStream ooStream = new ObjectOutputStream(
 				new FileOutputStream("Course.dat"));
 		
@@ -165,11 +165,13 @@ public class Course implements Serializable{
 		ooStream.close();			
 	}
 	
-	private void readObject() throws FileNotFoundException, IOException, ClassNotFoundException{
+	public Course readObject(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException{
 		Course temp = null;
 		ObjectInputStream ioStream = new ObjectInputStream(
-				new FileInputStream("Course.dat"));
+				new FileInputStream(fileName));
 		 temp = (Course)ioStream.readObject();
 		ioStream.close();
+		
+		return temp;
 	}
 }
