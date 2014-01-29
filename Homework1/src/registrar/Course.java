@@ -156,4 +156,20 @@ public class Course implements Serializable{
 		}
 		
 	}
+	
+	private void writeObject() throws FileNotFoundException, IOException{
+		ObjectOutputStream ooStream = new ObjectOutputStream(
+				new FileOutputStream("Course.dat"));
+		
+		ooStream.writeObject(this);
+		ooStream.close();			
+	}
+	
+	private void readObject() throws FileNotFoundException, IOException, ClassNotFoundException{
+		Course temp = null;
+		ObjectInputStream ioStream = new ObjectInputStream(
+				new FileInputStream("Course.dat"));
+		 temp = (Course)ioStream.readObject();
+		ioStream.close();
+	}
 }
