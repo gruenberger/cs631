@@ -1,24 +1,22 @@
 package project1;
 
 public class Seat {
-	private char label;
+	private char seat;
 	private String type;
-	private int row;
-	private int column;
+	private int row;	
 	private Customer customer;
 	private boolean isExtraSpaceSeat = false;
 	private boolean isOccupied = false;
 	
-	public Seat(char inLabel, String inType, int inRow, int inColumn){
-		label = inLabel;
+	public Seat(char inSeat, String inType, int inRow){
+		seat = inSeat;
 		type = inType;
-		row = inRow;
-		column = inColumn;		
+		row = inRow;				
 	}
 	
 	
-	public char getLabel() {
-		return label;
+	public char getSeat() {
+		return seat;
 	}	
 	
 	public String getType() {
