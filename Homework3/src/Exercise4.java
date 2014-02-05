@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.*;
+
 
 public class Exercise4 {
 
@@ -7,8 +10,15 @@ public class Exercise4 {
 		//System.out.println(ex4(5,25));
 		//writeLine('x',10);
 		//writeBlock('x',2,3);
-		isPalindrome((" lonely, tylenol. ").replaceAll("\\w", "").replaceAll(".", "")
-				.replaceAll(",", ""));
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter a String");
+		String pal = s.nextLine();
+		pal = pal.toLowerCase();
+		pal = pal.replaceAll("[^a-zA-Z ]", "");
+		pal = pal.replaceAll("\\p{Space}", "");
+		System.out.println(pal);
+		
+		System.out.println(isPalindrome(pal,0,pal.length()-1));
 
 
 	}
@@ -39,11 +49,12 @@ public class Exercise4 {
 		}
 	}
 	
-	public static boolean isPalindrome(String isIt){
-		if(){
+	public static boolean isPalindrome(String isIt, int start, int end){
+		if(start >= end){
 			
-		}else(){
-			
+			return true;
+		}else{
+			isPalindrome(isIt,start+1,end-1);
 		}
 	}
 
