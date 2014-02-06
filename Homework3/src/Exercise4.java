@@ -1,6 +1,12 @@
+/*
+ * Andrew Gruenberger
+ * CS631
+ * Homework 3 Source code
+ * Due: Feb 6
+ */
+
 import java.util.Scanner;
 import java.*;
-
 
 public class Exercise4 {
 
