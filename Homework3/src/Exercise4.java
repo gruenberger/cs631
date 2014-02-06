@@ -19,7 +19,24 @@ public class Exercise4 {
 		System.out.println(pal);
 		
 		System.out.println(isPalindrome(pal,0,pal.length()-1));
-
+		
+		if( isPalindrome("racecar",0,"racecar".length()-1)){
+			System.out.println("racecar passed the test");
+		}else{
+			System.out.println("racecar didn't pass the test");
+		}
+		
+		String biggerTest = " (* (*&)(*& ^)^*)& r #@ A )*!) d ?>?> a ?>?>#R  ";
+		String copyOfTest = " (* (*&)(*& ^)^*)& r #@ A )*!) d ?>?> a ?>?>#R  ";
+		biggerTest = biggerTest.toLowerCase();
+		biggerTest = biggerTest.replaceAll("[^a-zA-Z ]", "");
+		biggerTest = biggerTest.replaceAll("\\p{Space}", "");
+		
+		if(isPalindrome(biggerTest,0,biggerTest.length()-1)){
+			System.out.println(copyOfTest +" string worked");
+		}else{
+			System.out.println(copyOfTest+" did not work");
+		}
 
 	}
 	
@@ -50,12 +67,14 @@ public class Exercise4 {
 	}
 	
 	public static boolean isPalindrome(String isIt, int start, int end){
-		if(start >= end){
-			
+		if(start == end && isIt.charAt(start) == isIt.charAt(end))	
 			return true;
-		}else{
-			isPalindrome(isIt,start+1,end-1);
+		else{					
+			if(start < end && isIt.charAt(start) == isIt.charAt(end))
+				isPalindrome(isIt,start+1,end-1);
+			else
+				return false;
 		}
+		return true;
 	}
-
 }
