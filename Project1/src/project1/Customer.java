@@ -7,14 +7,14 @@ import java.*;
 public class Customer {
 
 	private String customerID;
-	private String name;
+	private Name name;
 	private String sex;
 	private int birthdate;
 	private String seatPref;
 	private EmergencyContact contact;
 	private ArrayList<Booking> bookings;
 	
-	public Customer(String customerID, String name, String sex, int birthdate,
+	public Customer(String customerID, Name name, String sex, int birthdate,
 			String seatPref) throws IllegalArgumentException{
 		this.customerID = customerID;
 		this.name = name;
@@ -28,7 +28,7 @@ public class Customer {
 		return customerID;
 	}
 	
-	public String getName(){
+	public Name getName(){
 		return name;
 	}
 	

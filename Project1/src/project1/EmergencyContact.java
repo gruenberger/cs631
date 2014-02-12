@@ -2,16 +2,16 @@ package project1;
 
 public class EmergencyContact {
 	
-	private String name;
+	private Name name;
 	private int phoneNumber;
 	
 	
-	public EmergencyContact(String name, int phoneNumber){
+	public EmergencyContact(Name name, int phoneNumber){
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		
 	}
-	public String getName() {
+	public Name getName() {
 		return name;
 	}
 }

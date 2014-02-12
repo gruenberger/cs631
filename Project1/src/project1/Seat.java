@@ -4,7 +4,7 @@ public class Seat {
 	private char seat;
 	private String type;
 	private int row;	
-	private Customer customer;
+	private Booking booking;
 	private boolean isExtraSpaceSeat = false;
 	private boolean isOccupied = false;
 	
@@ -25,11 +25,11 @@ public class Seat {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Customer getCustomer() {
-		return customer;
+	public Booking getBooking() {
+		return booking;
 	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void bookSeat(Booking newBooking) {
+		this.booking = newBooking;
 	}
 	public boolean isExtraSpaceSeat() {
 		return isExtraSpaceSeat;

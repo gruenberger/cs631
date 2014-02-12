@@ -24,6 +24,27 @@ public class Flight {
 		this.departTime = departTime;
 		this.arriveDate = arriveDate;
 		this.arriveTime = arriveTime;
+		instantiateSeats();
+	}
+	
+	private void instantiateSeats(){
+		for(int i = 0; i <20; i++){
+			for(int j =0; j < 6; j++){
+				if(j==0){
+					seats[i][j] = new Seat('a',"window",i+1);
+				}else if(j==1){
+					seats[i][j] = new Seat('b',"middle",i+1);
+				}else if(j==2){
+					seats[i][j] = new Seat('c',"isle",i+1);
+				}else if(j==3){
+					seats[i][j] = new Seat('d',"isle",i+1);
+				}else if(j==4){
+					seats[i][j] = new Seat('e',"middle",i+1);
+				}else if(j==5){
+					seats[i][j] = new Seat('f',"window",i+1);
+				}
+			}
+		}
 	}
 
 	public int getFlightNumber() {
