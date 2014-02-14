@@ -17,5 +17,9 @@ public class Name {
 	public String getLast(){
 		return last;
 	}
+	
+	public String toString(){
+		return last+" "+first;
+	}
 
 }

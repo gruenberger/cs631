@@ -1,6 +1,7 @@
 package project1;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Database {
 	
@@ -9,6 +10,7 @@ public class Database {
 	
 	public Database(){
 		customerList = new ArrayList<Customer>();
+		//System.out.println(customerList.isEmpty());
 		flightList = new ArrayList<Flight>();
 	}
 	
@@ -34,6 +36,22 @@ public class Database {
 	
 	public void removeCustomer(Customer remCustomer) {
 		customerList.remove(remCustomer);
+	}
+	
+	public boolean idCheck(int id){
+		Iterator<Customer> i = customerList.iterator();
+		Customer temp;
+		
+		//if(customerList.isEmpty())
+			//return false;
+		
+		while(i.hasNext()){
+			System.out.println("in id Check");
+			temp = i.next();
+			if(temp.getCustomerID()== id)
+				return true;
+		}
+		return false;
 	}
 
 }

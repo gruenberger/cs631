@@ -12,6 +12,15 @@ public class Booking {
 		this.customer = customer;
 	}
 	
+	public Booking(Flight flight, Customer customer){
+		this.flight = flight;
+		this.customer = customer;
+	}
+	
+	public void setSeat(Seat x){
+		seat = x;
+	}
+	
 	public Flight getFlight(){
 		return flight;
 	}
