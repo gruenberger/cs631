@@ -61,18 +61,18 @@ public class Customer {
 	public EmergencyContact getEmergencyContact(){
 		return contact;
 	}
-	
+	//Bookings are maintained in an ArrayList
 	private void addToBookings(Booking booking){
 		bookings.add(booking);
 	}
-	
+	//This checks the database of all customers created in the flight system
 	public void checkID(Database data){
 		if(data.idCheck(customerID)){
 			data.removeCustomer(this);		
 			throw new IllegalArgumentException("Customer ID must be unique");
 		}
 	}
-	
+	//This is an example of how the validity is checked when creating a customer
 	public void checkSex(Database data){
 		if(!(sex.equals("male") || sex.equals("female"))){
 			data.removeCustomer(this);
@@ -102,7 +102,8 @@ public class Customer {
 		cancelRequest.getFlight().cancelBooking(cancelRequest);
 		bookings.remove(cancelRequest);
 	}
-	
+	//The change seat uses the original booking and makes a shallow copy of it
+	//in case the change can't be processed.
 	public void changeSeat(Booking y, Seat x){
 		Booking change = bookings.get(bookings.indexOf(y));
 		Booking temp = new Booking(change.getFlight(),change.getCustomer());
@@ -124,7 +125,7 @@ public class Customer {
 	}
 	
 	
-	public void writeToDatabase(){
+	private void writeToDatabase(){
 		data.addCustomer(this);
 	}
 	

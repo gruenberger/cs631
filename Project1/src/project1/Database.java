@@ -3,6 +3,9 @@ package project1;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
+//The database here just keeps a list of all flights and customers
+//created while the program executes
 public class Database {
 	
 	private ArrayList<Customer> customerList;

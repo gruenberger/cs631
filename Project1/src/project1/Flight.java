@@ -20,7 +20,16 @@ public class Flight {
 	private Seat[][] seats = new Seat[20][6];
 	private Database data;
 	
-	
+	/*
+	 * The constructor takes in all the data.  There is only one way to make a flight.
+	 * It then creates a 2d array of seat objects and checks the validity of the schedule
+	 * and destination.
+	 * 
+	 * The methods are all pretty basic setter/getters except for seat assignments.
+	 * 
+	 * Essentially, the seats are either occupied or not, and the class maintains a list
+	 * of unoccupied seats and uses that plus customer preference to assign seats.
+	 */
 	public Flight(int flightNumber, String departCity, String arriveCity,
 			GregorianCalendar depart, GregorianCalendar arrive, Database data) 
 					throws IllegalArgumentException {
@@ -82,7 +91,9 @@ public class Flight {
 		return seats;
 	}
 	
-	public void checkCities(){
+	//These two check methods ensure that the times and locations are "valid"
+	//they don't have to make sense, but they also can't break the laws of physics
+	private void checkCities(){
 		if(departCity.equals(arriveCity)){
 			data.removeFlight(this);
 			throw new IllegalArgumentException("The Departure and Arrival Cities must be different");
@@ -90,13 +101,17 @@ public class Flight {
 		
 	}
 	
-	public void checkTimes(){
+	private void checkTimes(){
 		if(arrivalChrono.before(departureChrono)){
 			data.removeFlight(this);
 			throw new IllegalArgumentException("Arrival must be after departure!");
 		}
 	}
 	
+	//Here we gather all seats flagged as occupied.
+	//Then, it sorts the list lexicographically by customer last name
+	//After that, it uses the printWriter class to write to a file
+	//then I close the streams!!
 	public void writePassengerList() throws IOException{
 		FileWriter outStream = new FileWriter("Flight_"+flightNumber+"_Manifest.dat");
 		PrintWriter output = new PrintWriter(outStream);
@@ -158,6 +173,11 @@ public class Flight {
 		}
 	}
 	
+	//This is the backbone of reserving a seat.  It takes in a booking request
+	//It creates a list of available seats
+	//Then, it iterates through each seat to see if it is a good match
+	//The matching goes based off of customer preference.  If there is no
+	//preferred seat, it assigns the first available seat.
 	public void reserveSeat(Booking request){
 		ArrayList<Seat> availableSeats = getEmptySeats();
 		if(availableSeats.isEmpty())
@@ -206,6 +226,7 @@ public class Flight {
 		}
 	}
 	
+	//Collects all the seats that have the occupied flag set to false
 	private ArrayList<Seat> getEmptySeats(){
 		ArrayList<Seat> emptySeats = new ArrayList<Seat>();
 		
@@ -218,6 +239,8 @@ public class Flight {
 		return emptySeats;
 	}
 	
+	//this was just a way to make it easier to work in a row/col style
+	//as well as with "real life" airline seating systems.
 	private int converter(char in){
 		if(in == 'a')
 			return 0;
@@ -235,6 +258,8 @@ public class Flight {
 			throw new IllegalArgumentException("The seat converter messed up!");
 	}
 	
+	//The book specific seat goes through and checks if it is available or not.
+	//If it is, then it assigns the booking to that seat.
 	public void bookSpecificSeat(Booking x){
 		if(isSeatOccupied(x.getSeat()))
 			throw new IllegalArgumentException("This seat is booked.");

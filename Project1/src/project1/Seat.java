@@ -56,18 +56,23 @@ public class Seat implements Comparable {
 		else
 			return false;
 	}
-	
+	//The row+1 is there to create understandable output (so there is no row 0)
 	public String toString(){
 		return "Row: "+(row+1)+" Seat: "+seat+" Type: "+type;
 	}
 	
+	//The cancel method removes references to the booking and flags it as
+	//unoccupied
 	public void cancellation(){
 		System.out.println("Removing booking association and resetting seat to vacant");
 		booking = null;
 		isOccupied = false;
 	}
 
-
+	//In order to print out an alphabetically ordered list, I wanted to use an arrayList sort function
+	//and that requires me to implement the comparable interface, which was not too difficult.
+	//Basically it is a way to set the order that you want.  In this case it uses the string's
+	//compareTo method so that I can sort it all out by customer last name.
 	@Override
 	public int compareTo(Object that) {
 		if(booking.getCustomer().getName().getLast().compareTo(((Seat) that).getBooking().getCustomer().getName().getLast())

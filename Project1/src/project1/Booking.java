@@ -5,7 +5,8 @@ public class Booking {
 	private Flight flight;
 	private Seat seat;
 	private Customer customer;
-	
+	//The booking was more a way of holding things together.
+	//It connects the flight, customer, and seat classes
 	public Booking(Flight flight, Seat seat, Customer customer){
 		this.flight = flight;
 		this.seat = seat;
