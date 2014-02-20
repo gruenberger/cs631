@@ -43,11 +43,8 @@ public class Database {
 	
 	public boolean idCheck(int id){
 		Iterator<Customer> i = customerList.iterator();
-		Customer temp;
-		
-		//if(customerList.isEmpty())
-			//return false;
-		
+		Customer temp;		
+				
 		while(i.hasNext()){
 			System.out.println("in id Check");
 			temp = i.next();
@@ -55,6 +52,20 @@ public class Database {
 				return true;
 		}
 		return false;
+	}
+	
+	public boolean flightCheck(int id){
+		Iterator<Flight> i = flightList.iterator();
+		Flight temp;		
+				
+		while(i.hasNext()){
+			System.out.println("in id Check");
+			temp = i.next();
+			if(temp.getFlightNumber()== id)
+				return true;
+		}
+		return false;
+		
 	}
 
 }

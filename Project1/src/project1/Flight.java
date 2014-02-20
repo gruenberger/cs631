@@ -108,6 +108,13 @@ public class Flight {
 		}
 	}
 	
+	private void checkFlightNum(){
+		if(data.flightCheck(flightNumber)){
+			data.removeFlight(this);		
+			throw new IllegalArgumentException("Flight Number must be unique");
+		}
+	}
+	
 	//Here we gather all seats flagged as occupied.
 	//Then, it sorts the list lexicographically by customer last name
 	//After that, it uses the printWriter class to write to a file
@@ -193,16 +200,15 @@ public class Flight {
 				temp = i.next();
 				row = temp.getRow();
 				col = converter(temp.getSeat());
-				//System.out.print(row);
-				//System.out.println(temp.getSeat());
+				
 				if(temp.getType().equals(request.getCustomer().getPref()) && !temp.isOccupied()){
 					seats[row][col].bookSeat(request);
 					seats[row][col].setOccupied(true);
 					seatFound = true;
 					request.setSeat(seats[row][col]);
-					System.out.println("Row: "+temp.getRow()+" Seat: "+temp.getSeat()+" is booked? "+temp.isOccupied());
+					
 					System.out.println("Booking Request Successfully processed");
-					//printSeats();
+					
 				}
 			}
 			if(!seatFound){
