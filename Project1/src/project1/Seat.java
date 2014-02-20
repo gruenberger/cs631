@@ -58,7 +58,7 @@ public class Seat implements Comparable {
 	}
 	
 	public String toString(){
-		return "Row: "+row+" Seat: "+seat+" Type: "+type;
+		return "Row: "+row+1+" Seat: "+seat+" Type: "+type;
 	}
 	
 	public void cancellation(){

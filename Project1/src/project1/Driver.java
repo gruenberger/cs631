@@ -7,6 +7,7 @@
  */
 package project1;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,10 +21,11 @@ public class Driver {
 		
 		GregorianCalendar date1 = new GregorianCalendar(2000, Calendar.JULY, 4);
 		GregorianCalendar date2 = new GregorianCalendar(1968, Calendar.JUNE, 8);
-		
+		GregorianCalendar date3 = new GregorianCalendar(1962, Calendar.APRIL, 5);
 		
 		Customer customer1 = new Customer(123, new Name("John","Doe"), "male", date2, "window", database);
 		Customer customer2 = new Customer(456, new Name("Joan","Johnsdotter"), "female", date1, "aisle", database);
+		Customer customer3 = new Customer(789, new Name("Joanne","Aardvark"), "female", date3, "middle", database);
 		
 		GregorianCalendar flightDep = new GregorianCalendar(2014, Calendar.JULY, 4, 13, 30, 45);
 		GregorianCalendar flightArr = new GregorianCalendar(2014, Calendar.JULY, 5, 13, 30, 45);
@@ -34,19 +36,33 @@ public class Driver {
 		
 		customer1.setEmergencyContact(emergency);
 		customer2.setEmergencyContact(emergency);
+		customer3.setEmergencyContact(emergency);
 		
 		Booking booking1 = new Booking(flight1, customer1);
 		Booking booking2 = new Booking(flight1, customer2);
 		Booking booking3 = new Booking(flight2, customer1);
 		Booking booking4 = new Booking(flight2, customer2);
+		Booking booking5 = new Booking(flight1, customer3);
+		Booking booking6 = new Booking(flight2, customer3);
 		
 		customer1.makeBooking(booking1);
 		customer1.makeBooking(booking3);
 		customer2.makeBooking(booking2);
 		customer2.makeBooking(booking4);
+		customer3.makeBooking(booking5);
+		customer3.makeBooking(booking6);
 		
 		customer1.displayBookings();
 		customer2.displayBookings();
+		customer3.displayBookings();
+		
+		try {
+			flight1.writePassengerList();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
+		
 
 	}
 

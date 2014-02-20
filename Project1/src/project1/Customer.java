@@ -9,6 +9,7 @@ import java.util.Iterator;
 
 public class Customer {
 
+	private SimpleDateFormat birthFormat = new SimpleDateFormat("dd-MM-yy");
 	private int customerID;
 	private Name name;
 	private String sex;
@@ -103,7 +104,7 @@ public class Customer {
 	}
 	
 	public String toString(){
-		return name.toString()+","+sex+","+birthdate.toString()+","+contact.toString();
+		return name.toString()+","+sex+","+birthFormat.format(birthdate.getTime())+","+contact.toString();
 	}
 	
 	
@@ -112,7 +113,7 @@ public class Customer {
 	}
 	
 	public void displayBookings(){
-		SimpleDateFormat birthFormat = new SimpleDateFormat("dd-mm-yy");
+		
 		Iterator<Booking> i = bookings.iterator();
 		
 		System.out.println(name.toString());
