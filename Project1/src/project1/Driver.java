@@ -1,3 +1,10 @@
+/*
+ * Andrew Gruenberger
+ * CS631
+ * 
+ * This still needs a bit more work.  There are a few tweaks I need to make.
+ * Along with some commenting.  I don't think it's terribly tricky to follow along.
+ */
 package project1;
 
 import java.util.Calendar;
