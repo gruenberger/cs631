@@ -146,7 +146,7 @@ public class Flight {
 				"Origin: "+departCity+"\n"+
 				"Destination: "+arriveCity+"\n"+
 				"Departure Time: "+flightFormat.format(departureChrono.getTime())+"\n"+
-				"Scheduled Arrival Time: "+flightFormat.format(departureChrono.getTime())+"\n";
+				"Scheduled Arrival Time: "+flightFormat.format(arrivalChrono.getTime())+"\n";
 	}
 	
 	public void printSeats(){
