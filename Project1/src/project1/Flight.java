@@ -41,17 +41,17 @@ public class Flight {
 		for(int i = 0; i <20; i++){
 			for(int j =0; j < 6; j++){
 				if(j==0){
-					seats[i][j] = new Seat('a',"window",i+1);
+					seats[i][j] = new Seat('a',"window",i);
 				}else if(j==1){
-					seats[i][j] = new Seat('b',"middle",i+1);
+					seats[i][j] = new Seat('b',"middle",i);
 				}else if(j==2){
-					seats[i][j] = new Seat('c',"isle",i+1);
+					seats[i][j] = new Seat('c',"aisle",i);
 				}else if(j==3){
-					seats[i][j] = new Seat('d',"isle",i+1);
+					seats[i][j] = new Seat('d',"aisle",i);
 				}else if(j==4){
-					seats[i][j] = new Seat('e',"middle",i+1);
+					seats[i][j] = new Seat('e',"middle",i);
 				}else if(j==5){
-					seats[i][j] = new Seat('f',"window",i+1);
+					seats[i][j] = new Seat('f',"window",i);
 				}
 			}
 		}
@@ -128,7 +128,7 @@ public class Flight {
 		for(int i =0; i<20; i++){
 			for(int j =0; j<6; j++){				
 				if(seats[i][j].isOccupied())
-						occupiedSeatList.add(seats[i][j]);				
+					occupiedSeatList.add(seats[i][j]);				
 			}
 		}
 		return occupiedSeatList;
@@ -147,6 +147,15 @@ public class Flight {
 				"Scheduled Arrival Time: "+arrivalChrono.toString()+"\n";
 	}
 	
+	public void printSeats(){
+		for(int i=0; i<20; i++){
+			for(int j=0; j<6; j++){
+				System.out.print("Row: "+(i+1)+" Seat: "+seats[i][j].getSeat()+"is occupied? ");
+				System.out.println(seats[i][j].isOccupied());
+			}
+		}
+	}
+	
 	public void reserveSeat(Booking request){
 		ArrayList<Seat> availableSeats = getEmptySeats();
 		if(availableSeats.isEmpty())
@@ -162,12 +171,16 @@ public class Flight {
 				temp = i.next();
 				row = temp.getRow();
 				col = converter(temp.getSeat());
-				if(temp.getType().equals(request.getCustomer().getPref())){
+				//System.out.print(row);
+				//System.out.println(temp.getSeat());
+				if(temp.getType().equals(request.getCustomer().getPref()) && !temp.isOccupied()){
 					seats[row][col].bookSeat(request);
 					seats[row][col].setOccupied(true);
 					seatFound = true;
 					request.setSeat(seats[row][col]);
+					System.out.println("Row: "+temp.getRow()+" Seat: "+temp.getSeat()+" is booked? "+temp.isOccupied());
 					System.out.println("Booking Request Successfully processed");
+					//printSeats();
 				}
 			}
 			if(!seatFound){
@@ -178,11 +191,13 @@ public class Flight {
 					row = temp.getRow();
 					col = converter(temp.getSeat());
 					
-					seats[row][col].bookSeat(request);
-					seats[row][col].setOccupied(true);
-					seatFound = true;
-					request.setSeat(seats[row][col]);
-					System.out.println("Booking Request Successfully processed, but not with preference");
+					if(!temp.isOccupied()){
+						seats[row][col].bookSeat(request);
+						seats[row][col].setOccupied(true);
+						seatFound = true;
+						request.setSeat(seats[row][col]);
+						System.out.println("Booking Request Successfully processed, but not with preference");
+					}
 					
 				}
 			}
@@ -194,7 +209,9 @@ public class Flight {
 		
 		for(int i=0; i<20; i++){
 			for(int j=0; j<6; j++){
-				if(seats[i][j].isOccupied()== false)
+				//System.out.print(seats[i][j].getRow());
+				//System.out.println(seats[i][j].getSeat());
+				if(seats[i][j].isOccupied()== false)					
 					emptySeats.add(seats[i][j]);
 			}
 		}		
