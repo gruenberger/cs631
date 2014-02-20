@@ -58,10 +58,11 @@ public class Seat implements Comparable {
 	}
 	
 	public String toString(){
-		return "Row: "+row+1+" Seat: "+seat+" Type: "+type;
+		return "Row: "+(row+1)+" Seat: "+seat+" Type: "+type;
 	}
 	
 	public void cancellation(){
+		System.out.println("Removing booking association and resetting seat to vacant");
 		booking = null;
 		isOccupied = false;
 	}
@@ -70,14 +71,14 @@ public class Seat implements Comparable {
 	@Override
 	public int compareTo(Object that) {
 		if(booking.getCustomer().getName().getLast().compareTo(((Seat) that).getBooking().getCustomer().getName().getLast())
-				== -1)			
+				<= -1)			
 			return -1;
 		else if(booking.getCustomer().getName().getLast().compareTo(((Seat) that).getBooking().getCustomer().getName().getLast())
 				== 0)
 			return 0;
 		else if(booking.getCustomer().getName().getLast().compareTo(((Seat) that).getBooking().getCustomer().getName().getLast())
-				== 0)
-		return 0;
+				>= 1)
+		return 1;
 		
 		return 0;
 	}

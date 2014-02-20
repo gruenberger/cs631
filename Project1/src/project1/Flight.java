@@ -116,7 +116,7 @@ public class Flight {
 		outStream.close();
 	}
 	
-	public Seat suggestSeat(){
+	private Seat suggestSeat(){
 		return null;//My reservation Algorithm books based on preference already
 	}
 	
@@ -152,8 +152,8 @@ public class Flight {
 	public void printSeats(){
 		for(int i=0; i<20; i++){
 			for(int j=0; j<6; j++){
-				System.out.print("Row: "+(i+1)+" Seat: "+seats[i][j].getSeat()+"is occupied? ");
-				System.out.println(seats[i][j].isOccupied());
+				//System.out.print("Row: "+(i+1)+" Seat: "+seats[i][j].getSeat()+"is occupied? ");
+				//System.out.println(seats[i][j].isOccupied());
 			}
 		}
 	}
@@ -206,13 +206,11 @@ public class Flight {
 		}
 	}
 	
-	public ArrayList<Seat> getEmptySeats(){
+	private ArrayList<Seat> getEmptySeats(){
 		ArrayList<Seat> emptySeats = new ArrayList<Seat>();
 		
 		for(int i=0; i<20; i++){
-			for(int j=0; j<6; j++){
-				//System.out.print(seats[i][j].getRow());
-				//System.out.println(seats[i][j].getSeat());
+			for(int j=0; j<6; j++){				
 				if(seats[i][j].isOccupied()== false)					
 					emptySeats.add(seats[i][j]);
 			}
@@ -246,7 +244,9 @@ public class Flight {
 	}
 	
 	public void cancelBooking(Booking booking){
+		System.out.println("Cancelling booking now...");
 		seats[booking.getSeat().getRow()][converter(booking.getSeat().getSeat())].cancellation();
+		System.out.println("Cancellation completed.");
 	}
 	
 }

@@ -103,6 +103,22 @@ public class Customer {
 		bookings.remove(cancelRequest);
 	}
 	
+	public void changeSeat(Booking y, Seat x){
+		Booking change = bookings.get(bookings.indexOf(y));
+		Booking temp = new Booking(change.getFlight(),change.getCustomer());
+		
+		cancelReservation(change);
+		change.setSeat(x);
+		
+		try{
+			change.getFlight().bookSpecificSeat(change);
+		}catch(IllegalArgumentException e){
+			System.out.println("Seat was occupied, resetting to original assignment");
+			makeBooking(temp);
+		}
+	}
+		
+	
 	public String toString(){
 		return name.toString()+","+sex+","+birthFormat.format(birthdate.getTime())+","+contact.toString();
 	}
