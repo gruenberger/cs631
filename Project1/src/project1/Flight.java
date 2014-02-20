@@ -4,6 +4,7 @@ import java.awt.List;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.GregorianCalendar;
@@ -140,11 +141,12 @@ public class Flight {
 	
 	@Override
 	public String toString(){
+		SimpleDateFormat flightFormat = new SimpleDateFormat("dd-MM-yy-hh:mm");
 		return "Flight: "+flightNumber+"\n"+
 				"Origin: "+departCity+"\n"+
 				"Destination: "+arriveCity+"\n"+
-				"Departure Time: "+departureChrono.toString()+"\n"+
-				"Scheduled Arrival Time: "+arrivalChrono.toString()+"\n";
+				"Departure Time: "+flightFormat.format(departureChrono.getTime())+"\n"+
+				"Scheduled Arrival Time: "+flightFormat.format(departureChrono.getTime())+"\n";
 	}
 	
 	public void printSeats(){

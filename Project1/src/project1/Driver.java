@@ -7,6 +7,8 @@
  */
 package project1;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -19,6 +21,7 @@ public class Driver {
 		GregorianCalendar date1 = new GregorianCalendar(2000, Calendar.JULY, 4);
 		GregorianCalendar date2 = new GregorianCalendar(1968, Calendar.JUNE, 8);
 		
+		
 		Customer customer1 = new Customer(123, new Name("John","Doe"), "male", date2, "window", database);
 		Customer customer2 = new Customer(456, new Name("Joan","Johnsdotter"), "female", date1, "aisle", database);
 		
@@ -27,6 +30,7 @@ public class Driver {
 		
 		Flight flight1 = new Flight(1, "New York", "Hong Kong", flightDep, flightArr, database);
 		Flight flight2 = new Flight(2, "Hong Kong", "New York", flightDep, flightArr, database);
+		
 		
 		customer1.setEmergencyContact(emergency);
 		customer2.setEmergencyContact(emergency);

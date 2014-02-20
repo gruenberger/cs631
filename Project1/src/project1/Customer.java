@@ -1,5 +1,6 @@
 package project1;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
@@ -111,11 +112,12 @@ public class Customer {
 	}
 	
 	public void displayBookings(){
+		SimpleDateFormat birthFormat = new SimpleDateFormat("dd-mm-yy");
 		Iterator<Booking> i = bookings.iterator();
 		
 		System.out.println(name.toString());
 		System.out.println(sex);
-		System.out.println(birthdate.toString());
+		System.out.println(birthFormat.format(birthdate.getTime()));
 		System.out.println(seatPref);
 		System.out.println("Emergency Contact: "+contact.toString());
 		
